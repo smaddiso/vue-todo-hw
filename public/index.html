@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>ToDo's</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css"/>
+  <script src="./js/bundle.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>ToDo's</h1>
+      <form v-on:submit.prevent="saveNewItem">
+        <label for="new-item">Add a new item:</label>
+        <input id="new-item" type="text" v-model="newItem"/>
+        <input id="submit-button" type="submit" value ="Save Item"/>
+      </form>
+      <ul>
+        <li v-for="(item, index) in items" :class="item.isDone ? 'completed':'not-done'">
+          <span>{{item.name}}</span>
+          <span v-if="item.isDone">Done!</span>
+          <button v-if="!item.isDone" v-on:click="completeItem(index)">Completed</button>
+        </li>
+      </ul>
+
+  </div>
+</body>
+</html>
